@@ -104,13 +104,17 @@ def convert_to_segment_amounts(segments):
 
     return updated_segments
 
+def get_segments_length(index):
+    segments = get_user_segments(index)
+    return len(segments)
 
 def print_segment_functions():
     for i in range(16):
         user_id = i + 1
+        segments_length = get_segments_length(i)
         print(
             f"function getSegmentsForUser{user_id}() public pure returns (LockupDynamic.Segment[] memory) {{")
-        print(f"    LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);")
+        print(f"    LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[]({segments_length});")
         print_segments(i)
         print("    return segments; \n}")
 
@@ -156,4 +160,5 @@ def format_number(number):
 
 # Print the functions
 print_user_functions()
-# print_segment_functions()
+print_segment_functions()
+

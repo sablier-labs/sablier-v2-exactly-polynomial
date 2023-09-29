@@ -359,7 +359,7 @@ contract ExactlyProtocolScript is BaseScript {
     }
 
     function getSegmentsForUser3() public pure returns (LockupDynamic.Segment[] memory) {
-        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
+        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](37);
         segments[0] = getSegment({ amount: 237e18, milestone: 1_717_102_800 }); // May 31, 2024
         segments[1] = getSegment({ amount: 275e18, milestone: 1_719_694_800 }); // June 30, 2024
         segments[2] = getSegment({ amount: 314e18, milestone: 1_722_373_200 }); // July 31, 2024
@@ -442,7 +442,7 @@ contract ExactlyProtocolScript is BaseScript {
     }
 
     function getSegmentsForUser5() public pure returns (LockupDynamic.Segment[] memory) {
-        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
+        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](37);
         segments[0] = getSegment({ amount: 43e18, milestone: 1_717_102_800 }); // May 31, 2024
         segments[1] = getSegment({ amount: 50e18, milestone: 1_719_694_800 }); // June 30, 2024
         segments[2] = getSegment({ amount: 57e18, milestone: 1_722_373_200 }); // July 31, 2024
@@ -607,7 +607,7 @@ contract ExactlyProtocolScript is BaseScript {
     }
 
     function getSegmentsForUser9() public pure returns (LockupDynamic.Segment[] memory) {
-        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
+        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](37);
         segments[0] = getSegment({ amount: 63e18, milestone: 1_714_424_400 }); // April 30, 2024
         segments[1] = getSegment({ amount: 74e18, milestone: 1_717_102_800 }); // May 31, 2024
         segments[2] = getSegment({ amount: 84e18, milestone: 1_719_694_800 }); // June 30, 2024
@@ -649,7 +649,7 @@ contract ExactlyProtocolScript is BaseScript {
     }
 
     function getSegmentsForUser10() public pure returns (LockupDynamic.Segment[] memory) {
-        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
+        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](37);
         segments[0] = getSegment({ amount: 32e18, milestone: 1_714_424_400 }); // April 30, 2024
         segments[1] = getSegment({ amount: 37e18, milestone: 1_717_102_800 }); // May 31, 2024
         segments[2] = getSegment({ amount: 42e18, milestone: 1_719_694_800 }); // June 30, 2024
@@ -896,7 +896,7 @@ contract ExactlyProtocolScript is BaseScript {
     }
 
     function getSegmentsForUser16() public pure returns (LockupDynamic.Segment[] memory) {
-        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
+        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](37);
         segments[0] = getSegment({ amount: 68e18, milestone: 1_727_643_600 }); // September 30, 2024
         segments[1] = getSegment({ amount: 80e18, milestone: 1_730_325_600 }); // October 31, 2024
         segments[2] = getSegment({ amount: 91e18, milestone: 1_732_917_600 }); // November 30, 2024
