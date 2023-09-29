@@ -121,6 +121,30 @@ def generate_segments_for(index):
             f"segments[{i}] = getSegment({{ amount: {amount}e18, milestone: {milestone} }}); // {date} ")
 
 
+def generate_users_functions():
+    recipients_addresses = get_recipients_addresses()
+    start_times = get_cliff_timestamps()
+    total_amounts = get_total_amounts()
+
+    for i in range(16):
+        user_number = i + 1
+        recipient_address = recipients_addresses[i]
+        start_time = start_times[i]
+        total_amount = formatNumber(total_amounts[i])
+        print(f"""function getParamsForUser{user_number}() public view returns (LockupDynamic.CreateWithMilestones memory) {{
+            return LockupDynamic.CreateWithMilestones({{
+                asset: EXA,
+                broker: broker,
+                cancelable: false,
+                recipient: {recipient_address},
+                segments: getSegmentsForUser{user_number}(),
+                sender: address(this),
+                startTime: {start_time},
+                totalAmount: {total_amount}e18
+            }});
+        }}""")
+
+
 def formatNumber(num):
     if num % 1 == 0:
         return int(num)
@@ -128,4 +152,5 @@ def formatNumber(num):
         return num
 
 
+generate_users_functions()
 generate_segments_functions()
