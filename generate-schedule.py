@@ -11,7 +11,7 @@ def get_dates():
     return df.iloc[5:50, 1].tolist()
 
 
-def get_addresses():
+def get_recipients_addresses():
     return df.iloc[0, 2:19].tolist()
 
 
@@ -31,7 +31,7 @@ def get_total_amounts():
     return amounts.tolist()
 
 
-def get_segments_amounts():
+def get_unlock_amounts():
     amounts = df.iloc[5:50, 2:19].map(lambda x: int(x.replace(',', '')) if isinstance(
         x, str) and x.replace(',', '').strip() != '' else None)
     return amounts.values.tolist()
@@ -45,33 +45,59 @@ def get_segments_milestones():
 
 # Returns the milestones and the amount for a given index from 0 to 16
 def get_segments_for(index):
-    milestones = get_segments_milestones()
-    amounts = get_segments_amounts()
-    index_row = [row[index] for row in amounts if row]
     dates = get_dates()
+    milestones = get_segments_milestones()
+    unlock_amounts = get_unlock_amounts()
+    row_unlock_amounts = [row[index] for row in unlock_amounts if row]
 
     segments = []
     for i in range(len(milestones)):
-        if index_row[i] > 0:
+        if row_unlock_amounts[i] > 0:
             segments.append({
                 'milestone': milestones[i],
-                'amount': index_row[i],
+                'amount': row_unlock_amounts[i],
                 'date': dates[i]
             })
+
+    segments = convert_to_segment_amounts(segments)
 
     return segments
 
 
-def print_addresses():
-    print(get_addresses())
+def convert_to_segment_amounts(segments):
+    if len(segments) < 2:
+        return segments
+
+    # Create a new list of segment dictionaries with updated amounts
+    updated_segments = [segments[0]]  # The first segment remains the same
+
+    for i in range(1, len(segments)):
+        # Calculate the difference in amounts between adjacent segments
+        diff_amount = segments[i]['amount'] - segments[i - 1]['amount']
+
+        # Create a new segment dictionary with the updated amount
+        updated_segment = {
+            'milestone': segments[i]['milestone'],
+            'amount': diff_amount,
+            'date': segments[i]['date']
+        }
+
+        # Append the updated segment to the updated_segments list
+        updated_segments.append(updated_segment)
+
+    return updated_segments
+
+
+def print_recipients_addresses():
+    print(get_recipients_addresses())
 
 
 def print_total_amounts():
     print(get_total_amounts())
 
 
-def print_segments_amounts():
-    print(get_segments_amounts())
+def print_unlock_amounts():
+    print(get_unlock_amounts())
 
 
 def generate_segments_functions():
@@ -102,4 +128,4 @@ def formatNumber(num):
         return num
 
 
-print(generate_segments_functions())
+generate_segments_functions()
