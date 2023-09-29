@@ -6,24 +6,61 @@ import { Broker, LockupDynamic } from "@sablier/v2-core/src/types/DataTypes.sol"
 import { ud2x18, ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 import { BaseScript } from "@sablier/v2-core-script/Base.s.sol";
-import { ISablierV2Batch } from "@sablier/v2-periphery/src/interfaces/ISablierV2Batch.sol";
+import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol";
 import { Batch } from "@sablier/v2-periphery/src/types/DataTypes.sol";
+import { IPRBProxy, IPRBProxyPlugin, IPRBProxyRegistry } from "@sablier/v2-periphery/src/types/Proxy.sol";
 
 contract ExactlyProtocolScript is BaseScript {
     IERC20 public constant EXA = IERC20(0x1e925De1c68ef83bD98eE3E130eF14a50309C01B);
     // https://docs.exact.ly/security/access-control
     address public constant EXACTLY_PROTOCOL_OWNER = 0xC0d6Bc5d052d1e74523AD79dD5A954276c9286D3;
-    uint128 public constant AGGREGATE_AMOUNT = 491_300e18;
+    uint128 public constant AGGREGATE_AMOUNT = 2_476_159e18;
+
+    // Check the address: https://prbproxy.com/
+    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0x584009E9eDe26e212182c9745F5c000191296a78);
 
     // Check the addresses in the docs: https://docs.sablier.com/contracts/v2/deployments
     ISablierV2LockupDynamic public constant SABLIER_LOCKUP_DYNAMIC =
         ISablierV2LockupDynamic(0x6f68516c21E248cdDfaf4898e66b2b0Adee0e0d6);
-
-    ISablierV2Batch public batch;
+    address public constant SABLIER_PROXY_PLUGIN = 0x77C8516B1F327890C956bb38F93Ac2d6B24795Ea;
+    ISablierV2ProxyTarget public immutable SABLIER_PROXY_TARGET =
+        ISablierV2ProxyTarget(0x194ed7D6005C8ba4084A948406545DF299ad37cD);
 
     Broker public broker = Broker({ account: address(0), fee: ud60x18(0) });
 
-    // TODO: implement function run
+    function run() public virtual broadcast returns (uint256[] memory streamIds) {
+        // Deploy an instance of PRBProxy. For more info, see:
+        // https://docs.sablier.com/contracts/v2/guides/proxy-architecture/overview
+        IPRBProxy proxy = PROXY_REGISTRY.getProxy({ user: msg.sender });
+        if (address(proxy) == address(0)) {
+            proxy = PROXY_REGISTRY.deployAndInstallPlugin({ plugin: IPRBProxyPlugin(SABLIER_PROXY_PLUGIN) });
+        }
+
+        // Approve the proxy to transfer $EXA
+        uint256 allowance = EXA.allowance(msg.sender, address(proxy));
+        if (allowance < AGGREGATE_AMOUNT) {
+            EXA.approve({ spender: address(proxy), amount: AGGREGATE_AMOUNT });
+        }
+
+        // Get the batch data
+        Batch.CreateWithMilestones[] memory batch = getBatch();
+
+        // Encode the data for the proxy
+        bytes memory data = abi.encodeCall(
+            SABLIER_PROXY_TARGET.batchCreateWithMilestones,
+            (SABLIER_LOCKUP_DYNAMIC, IERC20(address(EXA)), batch, bytes(""))
+        );
+
+        // Create a batch of streams via the proxy and Sablier's proxy target
+        bytes memory response = proxy.execute(address(SABLIER_PROXY_TARGET), data);
+        streamIds = abi.decode(response, (uint256[]));
+    }
+
+    function getBatch() public pure returns (Batch.CreateWithMilestones[] memory) {
+        Batch.CreateWithMilestones[] memory batch = new Batch.CreateWithMilestones[](16);
+        // TODO: declare the batch struct
+        return batch;
+    }
 
     function getSegment(uint128 amount, uint40 milestone) public pure returns (LockupDynamic.Segment memory) {
         LockupDynamic.Segment memory segment =
