@@ -1,6 +1,6 @@
-import pandas as pd
-from datetime import datetime
 import time
+from datetime import datetime
+import pandas as pd
 
 # Load the CSV file
 schedule_data = pd.read_csv('Exactly_Schedule.csv')
@@ -20,7 +20,28 @@ def extract_cliff_dates():
 
 def convert_cliff_dates_to_timestamps():
     cliff_dates = extract_cliff_dates()
-    return [int(datetime.strptime(date, "%m/%d/%Y").timestamp()) for date in cliff_dates]
+    cliff_timestamps = [int(datetime.strptime(
+        date, "%m/%d/%Y").timestamp()) for date in cliff_dates]
+    cliff_dates_converted = convert_date_format(cliff_dates)
+
+    dates_and_timestamps = []
+    for i in range(len(cliff_timestamps)):
+        dates_and_timestamps.append({
+            'date': cliff_dates_converted[i],
+            'timestamp': cliff_timestamps[i]
+        })
+
+    return dates_and_timestamps
+
+
+def convert_date_format(dates):
+    converted_dates = []
+    for date in dates:
+        dt = datetime.strptime(date, "%m/%d/%Y")
+        converted_date = dt.strftime("%B %d, %Y")
+        converted_dates.append(converted_date)
+
+    return converted_dates
 
 
 def extract_total_amounts():
@@ -106,13 +127,14 @@ def print_segments(index):
 
 def print_user_functions():
     addresses = extract_recipient_addresses()
-    start_times = convert_cliff_dates_to_timestamps()
+    cliff_dates_and_timestamps = convert_cliff_dates_to_timestamps()
     total_amounts = extract_total_amounts()
 
     for i in range(16):
         user_id = i + 1
         address = addresses[i]
-        start_time = start_times[i]
+        start_time = cliff_dates_and_timestamps[i]['timestamp']
+        start_time_date = cliff_dates_and_timestamps[i]['date']
         total_amount = format_number(total_amounts[i])
         print(f"""function getParamsForUser{user_id}() public view returns (LockupDynamic.CreateWithMilestones memory) {{
             return LockupDynamic.CreateWithMilestones({{
@@ -122,7 +144,7 @@ def print_user_functions():
                 recipient: {address},
                 segments: getSegmentsForUser{user_id}(),
                 sender: EXACTLY_PROTOCOL_OWNER,
-                startTime: {start_time},
+                startTime: {start_time}, // {start_time_date}
                 totalAmount: {total_amount}e18
             }});
         }}""")
@@ -134,4 +156,4 @@ def format_number(number):
 
 # Print the functions
 print_user_functions()
-print_segment_functions()
+# print_segment_functions()
