@@ -11,6 +11,8 @@ import { Batch } from "@sablier/v2-periphery/src/types/DataTypes.sol";
 
 contract ExactlyProtocolScript is BaseScript {
     IERC20 public constant EXA = IERC20(0x1e925De1c68ef83bD98eE3E130eF14a50309C01B);
+    // https://docs.exact.ly/security/access-control
+    address public constant EXACTLY_PROTOCOL_OWNER = 0xC0d6Bc5d052d1e74523AD79dD5A954276c9286D3;
     uint128 public constant AGGREGATE_AMOUNT = 491_300e18;
 
     // Check the addresses in the docs: https://docs.sablier.com/contracts/v2/deployments
@@ -33,10 +35,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xA4F5f3848142116fe061e7255C133003a41ABce8,
             segments: getSegmentsForUser1(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 202_086e18
         });
@@ -46,10 +48,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xE72185a9f4Ce3500d6dC7CCDCfC64cf66D823bE8,
             segments: getSegmentsForUser2(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 150_587e18
         });
@@ -59,10 +61,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xE72185a9f4Ce3500d6dC7CCDCfC64cf66D823bE8,
             segments: getSegmentsForUser3(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_716_411_600,
             totalAmount: 34_224e18
         });
@@ -72,10 +74,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xcd25c40dCfB47f6eE3112734393D25c9e21A3AA7,
             segments: getSegmentsForUser4(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 18_905e18
         });
@@ -85,10 +87,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xcd25c40dCfB47f6eE3112734393D25c9e21A3AA7,
             segments: getSegmentsForUser5(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_716_411_600,
             totalAmount: 6193e18
         });
@@ -98,10 +100,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0x652afcD1EB1A90A622dC4033eE7630BdD3ad3E51,
             segments: getSegmentsForUser6(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 37_484e18
         });
@@ -111,10 +113,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xCa81a029aCa50Fa3e25Ea2f26E10152d903fB4B5,
             segments: getSegmentsForUser7(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 25_098e18
         });
@@ -124,10 +126,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xF891855Ddb613A9D56b6EAeA7495950B374181e2,
             segments: getSegmentsForUser8(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 33_572e18
         });
@@ -137,10 +139,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0x7d5Ff8caE8eF8d15357Cfd4A291E830C0F875F1B,
             segments: getSegmentsForUser9(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_713_560_400,
             totalAmount: 9126e18
         });
@@ -150,10 +152,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0x3A0B303FF6B7250ddb659AdD318c8e74f3e8104d,
             segments: getSegmentsForUser10(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_713_560_400,
             totalAmount: 4563e18
         });
@@ -163,10 +165,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0x4073F392794218FA3195cce45eaaC9A77066c640,
             segments: getSegmentsForUser11(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 325_945e18
         });
@@ -176,10 +178,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xFB1E9918FBA266797e1191597b64ED6Be1EE2728,
             segments: getSegmentsForUser12(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 1_303_780e18
         });
@@ -189,10 +191,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0x7b7048820FB71Db6F086c5365E2948ce39E73304,
             segments: getSegmentsForUser13(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 46_284e18
         });
@@ -202,10 +204,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xD754d49Ce331669C4f15B5e1b8E72D2d9Fc51B28,
             segments: getSegmentsForUser14(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 23_142e18
         });
@@ -215,10 +217,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0xd3819BEd61861d281d45E79988f95d4371D25e2c,
             segments: getSegmentsForUser15(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_704_060_000,
             totalAmount: 46_284e18
         });
@@ -228,10 +230,10 @@ contract ExactlyProtocolScript is BaseScript {
         return LockupDynamic.CreateWithMilestones({
             asset: EXA,
             broker: broker,
-            cancelable: false,
+            cancelable: true,
             recipient: 0x86C614FD180855f35160eD34552Ad4E99b8A2B52,
             segments: getSegmentsForUser16(),
-            sender: address(this),
+            sender: EXACTLY_PROTOCOL_OWNER,
             startTime: 1_724_792_400,
             totalAmount: 10_104e18
         });

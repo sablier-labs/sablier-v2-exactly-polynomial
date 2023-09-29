@@ -104,9 +104,8 @@ def generate_segments_functions():
     for i in range(16):
         user_number = i + 1
         print(
-            f"function getSegmentsForUser{user_number}() public pure returns (LockupDynamic.Segment[] memory)")
-        print(
-            "{LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36); ")
+            f"function getSegmentsForUser{user_number}() public pure returns (LockupDynamic.Segment[] memory) {{")
+        print(f"    LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);")
         generate_segments_for(i)
         print("return segments; }")
 
@@ -135,10 +134,10 @@ def generate_users_functions():
             return LockupDynamic.CreateWithMilestones({{
                 asset: EXA,
                 broker: broker,
-                cancelable: false,
+                cancelable: true,
                 recipient: {recipient_address},
                 segments: getSegmentsForUser{user_number}(),
-                sender: address(this),
+                sender: EXACTLY_PROTOCOL_OWNER,
                 startTime: {start_time},
                 totalAmount: {total_amount}e18
             }});
