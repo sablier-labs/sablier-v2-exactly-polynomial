@@ -7,7 +7,7 @@ import { ud2x18, ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 import { BaseScript } from "@sablier/v2-core-script/Base.s.sol";
 
-contract ExactlyProtocolScript is BaseScript {
+contract ExactlyScheduleScript is BaseScript {
     IERC20 public constant EXA = IERC20(0x1e925De1c68ef83bD98eE3E130eF14a50309C01B);
     // https://docs.exact.ly/security/access-control
     address public constant EXACTLY_PROTOCOL_OWNER = 0xC0d6Bc5d052d1e74523AD79dD5A954276c9286D3;
@@ -23,6 +23,8 @@ contract ExactlyProtocolScript is BaseScript {
         streamIds = new uint256[](16);
         LockupDynamic.CreateWithMilestones[] memory usersParams = new LockupDynamic.CreateWithMilestones[](16);
         usersParams = getUsersParams();
+
+        EXA.approve(address(SABLIER_LOCKUP_DYNAMIC), AGGREGATE_AMOUNT);
 
         for (uint256 i = 0; i < 16; ++i) {
             usersParams = getUsersParams();
