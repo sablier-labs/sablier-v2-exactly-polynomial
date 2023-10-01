@@ -18,7 +18,7 @@ Run the script like this, making sure to replace `ETH_FROM` with your wallet add
 ```sh
 # your address here
 ETH_FROM=0x0000000000000000000000000000000000000000 \
-forge script script/ExactlyProtocol.s.sol \
+forge script script/ExactlySchedule.s.sol \
 --broadcast \
 --ledger \
 --mnemonic-derivation-paths  "m/44'/60'/0'/0" \
