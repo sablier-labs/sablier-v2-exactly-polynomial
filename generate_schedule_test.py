@@ -17,7 +17,7 @@ def test_extract_total_amounts():
 
 def test_segments_amounts():
     total_amounts = generate_schedule.extract_total_amounts()
-    for i in range(0, 16):
+    for i in range(0, len(total_amounts)):
         segments = generate_schedule.get_user_segments(i)
         segments_amounts_sum = 0
         for j in range(0, len(segments)):

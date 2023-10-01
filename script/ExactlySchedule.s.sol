@@ -267,6 +267,19 @@ contract ExactlyScheduleScript is BaseScript {
         });
     }
 
+    function getParamsForUser17() public view returns (LockupDynamic.CreateWithMilestones memory) {
+        return LockupDynamic.CreateWithMilestones({
+            asset: EXA,
+            broker: broker,
+            cancelable: true,
+            recipient: 0x997137e1c2A1A8A78CE2D17796b870eFbC7572D2,
+            segments: getSegmentsForUser17(),
+            sender: EXACTLY_PROTOCOL_OWNER,
+            startTime: 1_704_060_000, // January 01, 2024
+            totalAmount: 198_782e18
+        });
+    }
+
     function getSegmentsForUser1() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
         segments[0] = getSegment({ amount: 3039e18, milestone: 1_706_652_000 }); // January 31, 2024
@@ -925,6 +938,47 @@ contract ExactlyScheduleScript is BaseScript {
         segments[34] = getSegment({ amount: 456e18, milestone: 1_816_981_200 }); // July 31, 2027
         segments[35] = getSegment({ amount: 466e18, milestone: 1_819_659_600 }); // August 31, 2027
         segments[36] = getSegment({ amount: 478e18, milestone: 1_822_251_600 }); // September 30, 2027
+        return segments;
+    }
+
+    function getSegmentsForUser17() public pure returns (LockupDynamic.Segment[] memory) {
+        LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
+        segments[0] = getSegment({ amount: 5522e18, milestone: 1_706_652_000 }); // January 31, 2024
+        segments[1] = getSegment({ amount: 5521e18, milestone: 1_709_157_600 }); // February 29, 2024
+        segments[2] = getSegment({ amount: 5522e18, milestone: 1_711_836_000 }); // March 31, 2024
+        segments[3] = getSegment({ amount: 5522e18, milestone: 1_714_424_400 }); // April 30, 2024
+        segments[4] = getSegment({ amount: 5522e18, milestone: 1_717_102_800 }); // May 31, 2024
+        segments[5] = getSegment({ amount: 5521e18, milestone: 1_719_694_800 }); // June 30, 2024
+        segments[6] = getSegment({ amount: 5522e18, milestone: 1_722_373_200 }); // July 31, 2024
+        segments[7] = getSegment({ amount: 5522e18, milestone: 1_725_051_600 }); // August 31, 2024
+        segments[8] = getSegment({ amount: 5522e18, milestone: 1_727_643_600 }); // September 30, 2024
+        segments[9] = getSegment({ amount: 5521e18, milestone: 1_730_325_600 }); // October 31, 2024
+        segments[10] = getSegment({ amount: 5522e18, milestone: 1_732_917_600 }); // November 30, 2024
+        segments[11] = getSegment({ amount: 5522e18, milestone: 1_735_596_000 }); // December 31, 2024
+        segments[12] = getSegment({ amount: 5521e18, milestone: 1_738_274_400 }); // January 31, 2025
+        segments[13] = getSegment({ amount: 5522e18, milestone: 1_740_693_600 }); // February 28, 2025
+        segments[14] = getSegment({ amount: 5522e18, milestone: 1_743_368_400 }); // March 31, 2025
+        segments[15] = getSegment({ amount: 5522e18, milestone: 1_745_960_400 }); // April 30, 2025
+        segments[16] = getSegment({ amount: 5521e18, milestone: 1_748_638_800 }); // May 31, 2025
+        segments[17] = getSegment({ amount: 5522e18, milestone: 1_751_230_800 }); // June 30, 2025
+        segments[18] = getSegment({ amount: 5522e18, milestone: 1_753_909_200 }); // July 31, 2025
+        segments[19] = getSegment({ amount: 5521e18, milestone: 1_756_587_600 }); // August 31, 2025
+        segments[20] = getSegment({ amount: 5522e18, milestone: 1_759_179_600 }); // September 30, 2025
+        segments[21] = getSegment({ amount: 5522e18, milestone: 1_761_861_600 }); // October 31, 2025
+        segments[22] = getSegment({ amount: 5522e18, milestone: 1_764_453_600 }); // November 30, 2025
+        segments[23] = getSegment({ amount: 5521e18, milestone: 1_767_132_000 }); // December 31, 2025
+        segments[24] = getSegment({ amount: 5522e18, milestone: 1_769_810_400 }); // January 31, 2026
+        segments[25] = getSegment({ amount: 5522e18, milestone: 1_772_229_600 }); // February 28, 2026
+        segments[26] = getSegment({ amount: 5522e18, milestone: 1_774_904_400 }); // March 31, 2026
+        segments[27] = getSegment({ amount: 5521e18, milestone: 1_777_496_400 }); // April 30, 2026
+        segments[28] = getSegment({ amount: 5522e18, milestone: 1_780_174_800 }); // May 31, 2026
+        segments[29] = getSegment({ amount: 5522e18, milestone: 1_782_766_800 }); // June 30, 2026
+        segments[30] = getSegment({ amount: 5521e18, milestone: 1_785_445_200 }); // July 31, 2026
+        segments[31] = getSegment({ amount: 5522e18, milestone: 1_788_123_600 }); // August 31, 2026
+        segments[32] = getSegment({ amount: 5522e18, milestone: 1_790_715_600 }); // September 30, 2026
+        segments[33] = getSegment({ amount: 5522e18, milestone: 1_793_397_600 }); // October 31, 2026
+        segments[34] = getSegment({ amount: 5521e18, milestone: 1_795_989_600 }); // November 30, 2026
+        segments[35] = getSegment({ amount: 5522e18, milestone: 1_798_668_000 }); // December 31, 2026
         return segments;
     }
 }

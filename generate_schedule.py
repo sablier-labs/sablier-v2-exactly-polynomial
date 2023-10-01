@@ -111,7 +111,7 @@ def get_segments_length(index):
 
 
 def print_segment_functions():
-    for i in range(16):
+    for i in range(17):
         user_id = i + 1
         segments_length = get_segments_length(i)
         print(
@@ -137,7 +137,7 @@ def print_user_functions():
     cliff_dates_and_timestamps = convert_cliff_dates_to_timestamps()
     total_amounts = extract_total_amounts()
 
-    for i in range(16):
+    for i in range(17):
         user_id = i + 1
         address = addresses[i]
         start_time = cliff_dates_and_timestamps[i]['timestamp']
