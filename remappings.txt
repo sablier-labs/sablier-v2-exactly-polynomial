@@ -1,4 +1,3 @@
-@sablier/v2-core-script/=lib/v2-periphery/lib/v2-core/script/
-@sablier/v2-core/=lib/v2-periphery/lib/v2-core/
-@sablier/v2-periphery/=lib/v2-periphery
+@sablier/v2-core-script/=lib/v2-core/script/
+@sablier/v2-core/=lib/v2-core/
 forge-std/=lib/forge-std/src/
