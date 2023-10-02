@@ -10,7 +10,7 @@ import { BaseScript } from "@sablier/v2-core-script/Base.s.sol";
 // import { Batch } from "@sablier/v2-periphery/src/types/DataTypes.sol";
 // import { IPRBProxy, IPRBProxyPlugin, IPRBProxyRegistry } from "@sablier/v2-periphery/src/types/Proxy.sol";
 
-contract ExactlyProtocolScript is BaseScript {
+contract ExactlyDraftScript is BaseScript {
     /*//////////////////////////////////////////////////////////////////////////
                                    EXACTLY PARAMS
     //////////////////////////////////////////////////////////////////////////*/

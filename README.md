@@ -1,7 +1,7 @@
 # Sablier V2 🤝 Exactly Protocol
 
-This repository contains a Forge script developed by the Sablier Labs team for Exactly Protocol. The script generates
-Lockup Dynamic segments that emulate a polynomial function.
+This repository contains several Forge scripts developed by the Sablier Labs team for Exactly Protocol. The scripts
+generate Lockup Dynamic segments that emulate a polynomial function.
 
 ## Polynomial
 
@@ -29,6 +29,12 @@ forge script script/ExactlySchedule.s.sol \
 -vvvv
 ```
 
+## Helpers
+
+Part of the Solidity code has been generated using the Python scripts located in the [data](/data) directory.
+
+```sh
+
 ## Notes
 
 - Run `foundryup` to ensure that you are running the latest version of Foundry
@@ -40,6 +46,7 @@ forge script script/ExactlySchedule.s.sol \
 ## References
 
 - [Sablier Docs](https://docs.sablier.com)
+- [Exactly](https://exact.ly/)
 
 ## Caveat Emptor
 
@@ -49,3 +56,4 @@ warranties and will not be liable for any loss, direct or indirect through conti
 ## License
 
 This repo is licensed under GPL 3.0 or later.
+```
