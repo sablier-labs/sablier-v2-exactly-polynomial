@@ -1,5 +1,5 @@
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 import pandas as pd
 
 # Load the CSV file
@@ -21,7 +21,7 @@ def extract_cliff_dates():
 def convert_cliff_dates_to_timestamps():
     cliff_dates = extract_cliff_dates()
     cliff_timestamps = [int(datetime.strptime(
-        date, "%m/%d/%Y").timestamp()) for date in cliff_dates]
+        date, "%m/%d/%Y").replace(tzinfo=timezone.utc).timestamp()) for date in cliff_dates]
     cliff_dates_converted = convert_date_format(cliff_dates)
 
     dates_and_timestamps = []
@@ -37,7 +37,7 @@ def convert_cliff_dates_to_timestamps():
 def convert_date_format(dates):
     converted_dates = []
     for date in dates:
-        dt = datetime.strptime(date, "%m/%d/%Y")
+        dt = datetime.strptime(date, "%m/%d/%Y").replace(tzinfo=timezone.utc)
         converted_date = dt.strftime("%B %d, %Y")
         converted_dates.append(converted_date)
 
@@ -60,7 +60,7 @@ def extract_unlock_amounts():
 
 def convert_dates_to_milestones():
     milestone_dates = extract_dates()
-    return [int(time.mktime(datetime.strptime(date, "%B %d, %Y").timetuple())) for date in milestone_dates]
+    return [int(datetime.strptime(date, "%B %d, %Y").replace(tzinfo=timezone.utc).timestamp()) for date in milestone_dates]
 
 
 def calculate_aggregate_amount():
@@ -162,5 +162,5 @@ def format_number(number):
 
 
 # Print the functions
-# print_user_functions()
-# print_segment_functions()
+print_user_functions()
+print_segment_functions()
