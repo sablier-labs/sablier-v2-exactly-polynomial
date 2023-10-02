@@ -7,7 +7,9 @@ import { ud2x18, ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 import { BaseScript } from "@sablier/v2-core-script/Base.s.sol";
 
-contract ExactlyScheduleScript is BaseScript {
+import { Timestamps } from "./Timestamps.sol";
+
+contract ExactlyScheduleScript is BaseScript, Timestamps {
     IERC20 public constant EXA = IERC20(0x1e925De1c68ef83bD98eE3E130eF14a50309C01B);
     // https://docs.exact.ly/security/access-control
     address public constant EXACTLY_PROTOCOL_OWNER = 0xC0d6Bc5d052d1e74523AD79dD5A954276c9286D3;
@@ -283,9 +285,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser1() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 3039e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 3262e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 3508e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 3039e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 3262e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 3508e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 3731e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 3981e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 4195e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -324,9 +326,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser2() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 2007e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 2173e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 2356e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 2007e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 2173e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 2356e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 2523e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 2708e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 2869e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -407,9 +409,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser4() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 234e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 254e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 278e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 234e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 254e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 278e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 298e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 322e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 341e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -490,9 +492,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser6() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 450e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 492e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 538e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 450e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 492e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 538e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 578e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 625e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 665e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -531,9 +533,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser7() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 235e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 262e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 293e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 235e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 262e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 293e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 321e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 352e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 378e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -572,9 +574,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser8() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 283e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 320e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 360e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 283e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 320e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 360e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 398e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 439e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 475e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -697,9 +699,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser11() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 7790e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 8269e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 8798e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 7790e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 8269e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 8798e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 9277e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 9814e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 10_277e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -738,9 +740,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser12() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 31_160e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 33_077e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 35_192e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 31_160e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 33_077e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 35_192e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 37_108e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 39_257e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 41_106e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -779,9 +781,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser13() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 807e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 858e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 914e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 807e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 858e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 914e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 966e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 1022e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 1072e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -820,9 +822,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser14() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 397e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 423e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 451e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 397e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 423e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 451e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 477e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 505e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 530e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -861,9 +863,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser15() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 808e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 859e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 915e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 808e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 859e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 915e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 966e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 1024e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 1072e18, milestone: 1_719_705_600 }); // June 30, 2024
@@ -944,9 +946,9 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegmentsForUser17() public pure returns (LockupDynamic.Segment[] memory) {
         LockupDynamic.Segment[] memory segments = new LockupDynamic.Segment[](36);
-        segments[0] = getSegment({ amount: 5522e18, milestone: 1_706_659_200 }); // January 31, 2024
-        segments[1] = getSegment({ amount: 5521e18, milestone: 1_709_164_800 }); // February 29, 2024
-        segments[2] = getSegment({ amount: 5522e18, milestone: 1_711_843_200 }); // March 31, 2024
+        segments[0] = getSegment({ amount: 5522e18, milestone: FEB_01_2025 }); // Feb 1, 2024 at 00:00
+        segments[1] = getSegment({ amount: 5521e18, milestone: MAR_01_2025 }); // Mar 1, 2024 at 00:00
+        segments[2] = getSegment({ amount: 5522e18, milestone: APR_01_2025 }); // Apr 1, 2024 at 00:00
         segments[3] = getSegment({ amount: 5522e18, milestone: 1_714_435_200 }); // April 30, 2024
         segments[4] = getSegment({ amount: 5522e18, milestone: 1_717_113_600 }); // May 31, 2024
         segments[5] = getSegment({ amount: 5521e18, milestone: 1_719_705_600 }); // June 30, 2024
