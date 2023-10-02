@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 import pandas as pd
 
 # Load the CSV file
-schedule_data = pd.read_csv('Exactly_Schedule.csv')
+schedule_data = pd.read_csv('data/exactly_schedule.csv')
 
 
 def extract_dates():
@@ -129,7 +129,7 @@ def print_segments(index):
         milestone = segment['milestone']
         date = segment['date']
         print(
-            f"    segments[{i}] = getSegment({{ amount: {formatted_amount}e18, milestone: {milestone} }}); // {date}")
+            f"    segments[{i}] = getSegment({{ amount: {formatted_amount}e18, milestone: {milestone} }}); // {date} at 00:00:00 UTC")
 
 
 def print_user_functions():
@@ -151,7 +151,7 @@ def print_user_functions():
                 recipient: {address},
                 segments: getSegmentsForUser{user_id}(),
                 sender: EXACTLY_PROTOCOL_OWNER,
-                startTime: {start_time}, // {start_time_date}
+                startTime: {start_time}, // {start_time_date} at 00:00:00 UTC
                 totalAmount: {total_amount}e18
             }});
         }}""")
@@ -162,5 +162,5 @@ def format_number(number):
 
 
 # Print the functions
-print_user_functions()
-print_segment_functions()
+# print_user_functions()
+# print_segment_functions()

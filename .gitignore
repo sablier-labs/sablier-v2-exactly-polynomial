@@ -2,7 +2,7 @@
 cache
 node_modules
 out
-__pycache__
+*__pycache__
 
 # files
 *.env

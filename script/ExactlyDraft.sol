@@ -46,10 +46,10 @@ contract ExactlyDraftScript is BaseScript {
         // }
 
         // // Approve the proxy to transfer $EXA
-        // uint256 allowance = EXA.allowance({ owner: address(this), spender: address(proxy) });
-        // if (allowance < AGGREGATE_AMOUNT) {
-        //     EXA.approve({ spender: address(proxy), amount: AGGREGATE_AMOUNT });
-        // }
+        uint256 allowance = EXA.allowance({ owner: address(this), spender: address(SABLIER_LOCKUP_DYNAMIC) });
+        if (allowance < AGGREGATE_AMOUNT) {
+            EXA.approve({ spender: address(SABLIER_LOCKUP_DYNAMIC), amount: AGGREGATE_AMOUNT });
+        }
 
         // // Get the batch data
         // Batch.CreateWithMilestones[] memory batch = getBatch(address(proxy));
