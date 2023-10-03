@@ -1,5 +1,5 @@
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import pandas as pd
 
 # Load the CSV file
@@ -60,7 +60,17 @@ def extract_unlock_amounts():
 
 def convert_dates_to_milestones():
     milestone_dates = extract_dates()
-    return [int(datetime.strptime(date, "%B %d, %Y").replace(tzinfo=timezone.utc).timestamp()) for date in milestone_dates]
+    one_day = 86400
+    return [int(datetime.strptime(date, "%B %d, %Y").replace(tzinfo=timezone.utc).timestamp()) + one_day for date in milestone_dates]
+
+
+def convert_dates_to_milestones_dates():
+    milestone_dates = extract_dates()
+    one_day = timedelta(days=1)
+
+    new_dates = [(datetime.strptime(date, "%B %d, %Y") +
+                  one_day).strftime("%B %d, %Y") for date in milestone_dates]
+    return new_dates
 
 
 def calculate_aggregate_amount():
@@ -69,7 +79,7 @@ def calculate_aggregate_amount():
 
 
 def get_user_segments(index):
-    dates = extract_dates()
+    dates = convert_dates_to_milestones_dates()
     milestones = convert_dates_to_milestones()
     unlock_amounts = extract_unlock_amounts()
     user_unlock_amounts = [row[index] for row in unlock_amounts if row]
@@ -162,5 +172,5 @@ def format_number(number):
 
 
 # Print the functions
-# print_user_functions()
-# print_segment_functions()
+print_user_functions()
+print_segment_functions()
