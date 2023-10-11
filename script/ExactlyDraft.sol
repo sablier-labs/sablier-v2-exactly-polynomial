@@ -40,13 +40,13 @@ contract ExactlyDraftScript is BaseScript {
     function run() public virtual broadcast returns (uint256[] memory streamIds) {
         // Deploy an instance of PRBProxy. For more info, see:
         // https://docs.sablier.com/contracts/v2/guides/proxy-architecture/overview
-        // IPRBProxy proxy = PROXY_REGISTRY.getProxy({ user: address(this) });
+        // IPRBProxy proxy = PROXY_REGISTRY.getProxy({ user: broadcaster });
         // if (address(proxy) == address(0)) {
         //     proxy = PROXY_REGISTRY.deployAndInstallPlugin({ plugin: IPRBProxyPlugin(SABLIER_PROXY_PLUGIN) });
         // }
 
         // // Approve the proxy to transfer $EXA
-        uint256 allowance = EXA.allowance({ owner: address(this), spender: address(SABLIER_LOCKUP_DYNAMIC) });
+        uint256 allowance = EXA.allowance({ owner: broadcaster, spender: address(SABLIER_LOCKUP_DYNAMIC) });
         if (allowance < AGGREGATE_AMOUNT) {
             EXA.approve({ spender: address(SABLIER_LOCKUP_DYNAMIC), amount: AGGREGATE_AMOUNT });
         }
