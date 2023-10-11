@@ -56,7 +56,7 @@ contract ExactlyScheduleScript is BaseScript {
 
     function getSegment(uint128 amount, uint40 milestone) public pure returns (LockupDynamic.Segment memory) {
         LockupDynamic.Segment memory segment =
-            LockupDynamic.Segment({ amount: amount, milestone: milestone, exponent: ud2x18(1) });
+            LockupDynamic.Segment({ amount: amount, milestone: milestone, exponent: ud2x18(1e18) });
         return segment;
     }
 
