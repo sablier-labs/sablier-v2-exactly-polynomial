@@ -33,8 +33,6 @@ forge script script/ExactlySchedule.s.sol \
 
 Part of the Solidity code has been generated using the Python scripts located in the [data](/data) directory.
 
-```sh
-
 ## Notes
 
 - Run `foundryup` to ensure that you are running the latest version of Foundry
@@ -56,4 +54,3 @@ warranties and will not be liable for any loss, direct or indirect through conti
 ## License
 
 This repo is licensed under GPL 3.0 or later.
-```
